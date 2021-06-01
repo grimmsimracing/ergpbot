@@ -52,6 +52,27 @@ client.on('message', (msg) => {
         }//end of if eventID
     }
 
+    else if(command === 'points'){
+        globalEventID = channelID
+        if(channelID){
+        axios.get('https://gsr.emotorsports.my/assets/functions/discordBot.php', {
+            params: {
+              action: 'pointstable',
+              discordID: driver_username,
+              eventID:channelID
+            }
+        }).then(function (response) {
+            msg.channel.send(response.data.message,{split:true});
+            console.log("ok");
+            //setTimeout(function(){ 
+                //msg.channel.send("!delete");
+           //},5000); //time in milliseconds
+        }).catch(function (error) {
+            console.log(error);
+          }); 
+        }//end of if eventID
+    }
+
     else if(command === 'delete'){
         msg.channel.messages.fetch({limit:10}).then(messages =>{
             msg.channel.bulkDelete(messages);
