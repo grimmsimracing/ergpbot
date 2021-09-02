@@ -20,7 +20,7 @@ client.on('message', (msg) => {
     const command = args.shift().toLowerCase();
 
     if(command === 'entrylist'){
-        axios.get('https://gsr.emotorsports.my/assets/functions/discordBot.php', {
+        axios.get('https://gsr.emotorsports.my/race/assets/functions/discordBot.php', {
             params: {
               action: 'entryList',
               eventID:channelID
@@ -35,7 +35,7 @@ client.on('message', (msg) => {
     else if(command === 'checkin'){
         globalEventID = channelID
         if(channelID){
-        axios.get('https://gsr.emotorsports.my/assets/functions/discordBot.php', {
+        axios.get('http://gsr.emotorsports.my/race/assets/functions/discordBot.php', {
             params: {
               action: 'checkin',
               discordID: driver_username,
@@ -55,7 +55,7 @@ client.on('message', (msg) => {
     else if(command === 'points'){
         globalEventID = channelID
         if(channelID){
-        axios.get('https://gsr.emotorsports.my/assets/functions/discordBot.php', {
+        axios.get('http://gsr.emotorsports.my/race/assets/functions/discordBot.php', {
             params: {
               action: 'pointstable',
               discordID: driver_username,
