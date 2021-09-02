@@ -44,7 +44,7 @@ client.on('message', (msg) => {
         }).then(function (response) {
             msg.channel.send(response.data.message);
             setTimeout(function(){ 
-                msg.channel.send("!delete");
+                //msg.channel.send("!delete");
            },5000); //time in milliseconds
         }).catch(function (error) {
             console.log(error);
