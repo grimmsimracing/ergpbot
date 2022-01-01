@@ -51,6 +51,7 @@ client.on('message', (msg) => {
           }); 
         }//end of if eventID
     }
+    
 
     else if(command === 'points'){
         globalEventID = channelID
@@ -60,6 +61,27 @@ client.on('message', (msg) => {
               action: 'pointstable',
               discordID: driver_username,
               eventID:channelID
+            }
+        }).then(function (response) {
+            msg.channel.send(response.data.message,{split:true});
+            console.log("ok");
+            //setTimeout(function(){ 
+                //msg.channel.send("!delete");
+           //},5000); //time in milliseconds
+        }).catch(function (error) {
+            console.log(error);
+          }); 
+        }//end of if eventID
+    }
+    
+    else if(command === 'teamregistration'){
+        globalEventID = channelID
+        if(channelID){
+        axios.get('http://gsr.emotorsports.my/race/assets/functions/discordBot.php', {
+            params: {
+              action: 'teamRegistration',
+              discordID: driver_username,
+              leagueID:channelID
             }
         }).then(function (response) {
             msg.channel.send(response.data.message,{split:true});
