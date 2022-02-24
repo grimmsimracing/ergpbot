@@ -42,10 +42,12 @@ client.on('message', (msg) => {
               eventID:channelID
             }
         }).then(function (response) {
-            msg.channel.send(response.data.message);
-            setTimeout(function(){ 
-                msg.channel.send("!delete");
-           },5000); //time in milliseconds
+            //msg.channel.send(response.data.message);
+            //setTimeout(function(){ 
+            //    msg.channel.send("!delete");
+           //},5000); //time in milliseconds
+            msg.channel.send("!delete");
+            console.log("ok");
         }).catch(function (error) {
             console.log(error);
           }); 
