@@ -54,6 +54,27 @@ client.on('message', (msg) => {
         }//end of if eventID
     }
     
+    else if(command === 'checkout'){
+        globalEventID = channelID
+        if(channelID){
+        axios.get('http://gsr.emotorsports.my/race/assets/functions/discordBot.php', {
+            params: {
+              action: 'checkout',
+              discordID: driver_username,
+              eventID:channelID
+            }
+        }).then(function (response) {
+            //msg.channel.send(response.data.message);
+            //setTimeout(function(){ 
+            //    msg.channel.send("!delete");
+           //},5000); //time in milliseconds
+            msg.channel.send("!delete");
+            console.log("ok");
+        }).catch(function (error) {
+            console.log(error);
+          }); 
+        }//end of if eventID
+    }
 
     else if(command === 'points'){
         globalEventID = channelID
