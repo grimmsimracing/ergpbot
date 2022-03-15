@@ -20,7 +20,7 @@ client.on('message', (msg) => {
     const command = args.shift().toLowerCase();
 
     if(command === 'entrylist'){
-        axios.get('https://gsr.emotorsports.my/race/assets/functions/discordBot.php', {
+        axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'entryList',
               eventID:channelID
@@ -35,7 +35,7 @@ client.on('message', (msg) => {
     else if(command === 'checkin'){
         globalEventID = channelID
         if(channelID){
-        axios.get('http://gsr.emotorsports.my/race/assets/functions/discordBot.php', {
+        axios.get('http://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'checkin',
               discordID: driver_username,
@@ -57,7 +57,7 @@ client.on('message', (msg) => {
     else if(command === 'checkout'){
         globalEventID = channelID
         if(channelID){
-        axios.get('http://gsr.emotorsports.my/race/assets/functions/discordBot.php', {
+        axios.get('http://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'checkout',
               discordID: driver_username,
@@ -79,7 +79,7 @@ client.on('message', (msg) => {
     else if(command === 'points'){
         globalEventID = channelID
         if(channelID){
-        axios.get('http://gsr.emotorsports.my/race/assets/functions/discordBot.php', {
+        axios.get('http://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'pointstable',
               discordID: driver_username,
@@ -100,7 +100,7 @@ client.on('message', (msg) => {
     else if(command === 'teamregistration'){
         globalEventID = channelID
         if(channelID){
-        axios.get('http://gsr.emotorsports.my/race/assets/functions/discordBot.php', {
+        axios.get('http://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'teamRegistration',
               discordID: driver_username,
