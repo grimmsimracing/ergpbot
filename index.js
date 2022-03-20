@@ -119,10 +119,11 @@ client.on('message', (msg) => {
     }
 
     else if(command === 'delete'){
-        msg.channel.messages.fetch({limit:10}).then(messages =>{
-            msg.channel.bulkDelete(messages);
-            msg.channel.send("!entrylist");
-        });
+        //msg.channel.messages.fetch({limit:10}).then(messages =>{
+        //    msg.channel.bulkDelete(messages);
+        //   
+        //});
+         msg.channel.send("!entrylist "+channelID);
     }
   });
 
