@@ -119,11 +119,24 @@ client.on('message', (msg) => {
     }
 
     else if(command === 'delete'){
-        msg.channel.messages.fetch({limit:10}).then(messages =>{
+        
+         msg.channel.messages.fetch({limit:10}).then(messages =>{
             msg.channel.bulkDelete(messages);
             //msg.channel.send("!entrylist "+channelID);
-            msg.channel.send("!entrylist");
+            //msg.channel.send("!entrylist");
+            axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+                params: {
+                  action: 'entryList',
+                  eventID:channelID
+                }
+            }).then(function (response) {
+                msg.channel.send(response.data.entrylist,{split:true});
+            }).catch(function (error) {
+                console.log(error);
+            }); 
         });
+        
+       
     }
   });
 
