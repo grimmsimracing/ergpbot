@@ -122,7 +122,7 @@ client.on('message', (msg) => {
         msg.channel.messages.fetch({limit:10}).then(messages =>{
             msg.channel.bulkDelete(messages);
             //msg.channel.send("!entrylist "+channelID);
-            msg.channel.send("!entrylist ");
+            msg.channel.send("!entrylist");
         });
     }
   });
