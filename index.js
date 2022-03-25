@@ -120,14 +120,17 @@ client.on('message', (msg) => {
 
     else if(command === 'delete'){
 
-          //msg.channel.send(response.data.message);
-          //  setTimeout(function(){ 
-          //     msg.channel.send("!clear 100");
-          // },5000); //time in milliseconds
+        setTimeout(function(){
+            console.log('ok working');
+            msg.channel.bulkDelete(5).then(() => {
+                //msg.channel.send("Done!");
+                msg.channel.send("Deleted 5 messages.").then(msg => msg.delete(3000));
+              });
+        }, 3000);
         
         
          //msg.channel.send("!clear 100");
-         msg.channel.send("!entrylist "+channelID);
+         //msg.channel.send("!entrylist "+channelID);
     }
   });
 
