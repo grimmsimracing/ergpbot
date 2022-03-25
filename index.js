@@ -123,7 +123,11 @@ client.on('message', (msg) => {
         //    msg.channel.bulkDelete(messages);
         //   
         //});
-         msg.channel.send("!clear 100");
+        msg.channel.send(response.data.message);
+            setTimeout(function(){ 
+                msg.channel.send("!clear 100");
+           },5000); //time in milliseconds
+         //msg.channel.send("!clear 100");
          msg.channel.send("!entrylist "+channelID);
     }
   });
