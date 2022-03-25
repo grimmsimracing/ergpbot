@@ -9,7 +9,7 @@ client.on('ready', () => {
     console.log('Logged in...');
 });
 
-client.on('message', (msg) => {
+client.on('messageCreate', (msg) => {
 
     const driver_username = msg.member.user.username+"#"+msg.member.user.discriminator;
     //if(msg.author.bot) return
@@ -121,7 +121,7 @@ client.on('message', (msg) => {
     else if(command === 'delete'){
 
         setTimeout(function(){
-            console.log('ok working');
+            //console.log('ok working');
             msg.channel.bulkDelete(5).then(() => {
                 //msg.channel.send("Done!");
                 msg.channel.send("Deleted 5 messages.").then(msg => msg.delete(3000));
