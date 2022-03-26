@@ -5,14 +5,13 @@ const prefix = '!';
 const client = new Discord.Client();
 var globalEventID = '';
 
-client.on('ready', () => {
-    console.log('Logged in...');
+client.once('ready', () => {
+    console.log('bot is ready');
 });
 
-client.on('messageCreate', (msg) => {
+client.on('message', (msg) => {
 
     const driver_username = msg.member.user.username+"#"+msg.member.user.discriminator;
-    //if(msg.author.bot) return
     if(!msg.content.startsWith(prefix)) return
     const channelID = msg.channel.topic;
     const commandBody = msg.content.slice(prefix.length);
@@ -20,119 +19,63 @@ client.on('messageCreate', (msg) => {
     const command = args.shift().toLowerCase();
 
     if(command === 'entrylist'){
-        axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
-            params: {
-              action: 'entryList',
-              eventID:channelID
-            }
-        }).then(function (response) {
-            msg.channel.send(response.data.entrylist,{split:true});
-        }).catch(function (error) {
-            console.log(error);
-        }); 
-    }
+        msg.channel.send("**Loading list, please wait...**");
+        setTimeout(function(){
+            //msg.channel.send(channelID);
+            axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+                params: {
+                action: 'entryList',
+                eventID:channelID
+                }
+            }).then(function (response) {
+                msg.channel.bulkDelete(50);
+                msg.channel.send(response.data.entrylist,{split:true});
+            });
+        },3000);
+    }  
 
     else if(command === 'checkin'){
-        globalEventID = channelID
+        globalEventID = channelID   
         if(channelID){
         axios.get('http://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
-              action: 'checkin',
-              discordID: driver_username,
-              eventID:channelID
+                action: 'checkin',
+                discordID: driver_username,
+                eventID:channelID
             }
         }).then(function (response) {
-            //msg.channel.send(response.data.message);
-            //setTimeout(function(){ 
-            //    msg.channel.send("!delete");
-           //},5000); //time in milliseconds
-            msg.channel.send("!delete");
-            console.log("ok");
+            msg.channel.send("!process");
         }).catch(function (error) {
             console.log(error);
           }); 
-        }//end of if eventID
-    }
+        }
+    } 
     
     else if(command === 'checkout'){
-        globalEventID = channelID
+        globalEventID = channelID   
         if(channelID){
         axios.get('http://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
-              action: 'checkout',
-              discordID: driver_username,
-              eventID:channelID
+                action: 'checkout',
+                discordID: driver_username,
+                eventID:channelID
             }
         }).then(function (response) {
-            //msg.channel.send(response.data.message);
-            //setTimeout(function(){ 
-            //    msg.channel.send("!delete");
-           //},5000); //time in milliseconds
-            msg.channel.send("!delete");
-            console.log("ok");
+            msg.channel.send("!process");
         }).catch(function (error) {
             console.log(error);
           }); 
-        }//end of if eventID
+        }
+    } 
+
+    else if(command === 'process'){
+        msg.channel.bulkDelete(50);
+        msg.channel.send('!entrylist'); 
     }
 
-    else if(command === 'points'){
-        globalEventID = channelID
-        if(channelID){
-        axios.get('http://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
-            params: {
-              action: 'pointstable',
-              discordID: driver_username,
-              eventID:channelID
-            }
-        }).then(function (response) {
-            msg.channel.send(response.data.message,{split:true});
-            console.log("ok");
-            //setTimeout(function(){ 
-                //msg.channel.send("!delete");
-           //},5000); //time in milliseconds
-        }).catch(function (error) {
-            console.log(error);
-          }); 
-        }//end of if eventID
-    }
-    
-    else if(command === 'teamregistration'){
-        globalEventID = channelID
-        if(channelID){
-        axios.get('http://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
-            params: {
-              action: 'teamRegistration',
-              discordID: driver_username,
-              leagueID:channelID
-            }
-        }).then(function (response) {
-            msg.channel.send(response.data.message,{split:true});
-            console.log("ok");
-            //setTimeout(function(){ 
-                //msg.channel.send("!delete");
-           //},5000); //time in milliseconds
-        }).catch(function (error) {
-            console.log(error);
-          }); 
-        }//end of if eventID
-    }
 
-    else if(command === 'delete'){
-
-        setTimeout(function(){
-            //console.log('ok working');
-            msg.channel.bulkDelete(5).then(() => {
-                //msg.channel.send("Done!");
-                msg.channel.send("Deleted 5 messages.").then(msg => msg.delete(3000));
-              });
-        }, 3000);
-        
-        
-         //msg.channel.send("!clear 100");
-         //msg.channel.send("!entrylist "+channelID);
-    }
   });
+
 
 client.login(process.env.BOT_TOKEN);
 
