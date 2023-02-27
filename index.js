@@ -31,6 +31,19 @@ client.on('message', (msg) => {
             console.log(error);
         }); 
     }
+    
+    else if(command === 'entrylistGE11Bronze'){
+        axios.get('https://eracinggp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+            params: {
+              action: 'entrylistGE11Bronze',
+              eventID:channelID
+            }
+        }).then(function (response) {
+            msg.channel.send(response.data.entrylist,{split:true});
+        }).catch(function (error) {
+            console.log(error);
+        }); 
+    }
 
     else if(command === 'checkin'){
         globalEventID = channelID
