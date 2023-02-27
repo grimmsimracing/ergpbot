@@ -20,7 +20,7 @@ client.on('message', (msg) => {
     const command = args.shift().toLowerCase();
 
     if(command === 'entrylist'){
-        axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+        axios.get('https://eracinggp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'entryList',
               eventID:channelID
@@ -35,7 +35,7 @@ client.on('message', (msg) => {
     else if(command === 'checkin'){
         globalEventID = channelID
         if(channelID){
-        axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+        axios.get('https://eracinggp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'checkin',
               discordID: driver_username,
@@ -57,7 +57,7 @@ client.on('message', (msg) => {
     else if(command === 'checkout'){
         globalEventID = channelID
         if(channelID){
-        axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+        axios.get('https://eracinggp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'checkout',
               discordID: driver_username,
@@ -79,7 +79,7 @@ client.on('message', (msg) => {
     else if(command === 'points'){
         globalEventID = channelID
         if(channelID){
-        axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+        axios.get('https://eracinggp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'pointstable',
               discordID: driver_username,
@@ -100,7 +100,7 @@ client.on('message', (msg) => {
     else if(command === 'pointspro'){
         globalEventID = channelID
         if(channelID){
-        axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+        axios.get('https://eracinggp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'pointstableCategory',
               discordID: driver_username,
@@ -122,7 +122,7 @@ client.on('message', (msg) => {
     else if(command === 'pointsproam'){
         globalEventID = channelID
         if(channelID){
-        axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+        axios.get('https://eracinggp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'pointstableCategory',
               discordID: driver_username,
@@ -144,7 +144,7 @@ client.on('message', (msg) => {
     else if(command === 'pointsam'){
         globalEventID = channelID
         if(channelID){
-        axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+        axios.get('https://eracinggp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'pointstableCategory',
               discordID: driver_username,
@@ -166,7 +166,7 @@ client.on('message', (msg) => {
     else if(command === 'teamregistration'){
         globalEventID = channelID
         if(channelID){
-        axios.get('https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+        axios.get('https://eracinggp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'teamRegistration',
               discordID: driver_username,
@@ -195,7 +195,7 @@ client.on('message', (msg) => {
     else if(command === 'listdrivers'){
         globalEventID = channelID
         if(channelID){
-        axios.get(https://ergp.axlemotorsport.com/race/assets/functions/discordBot.php', {
+        axios.get('https://eracinggp.axlemotorsport.com/race/assets/functions/discordBot.php', {
             params: {
               action: 'listDrivers',
               leagueID:channelID
